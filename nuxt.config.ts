@@ -55,5 +55,8 @@ export default defineNuxtConfig({
         }
       ]
     }
+  },
+  site: {
+    url: 'https://bzzix.com'
   }
 })

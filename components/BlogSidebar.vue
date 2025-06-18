@@ -18,7 +18,7 @@
         </svg>
         المقال المميز
       </h4>
-      <NuxtLink :to="`/blog/${featuredPost.id}`" class="block group cursor-pointer">
+      <NuxtLink :to="`/blog/${featuredPost.id}`" class="block group cursor-pointer" :title="featuredPost.title" :aria-label="featuredPost.title">
         <div class="h-40 bg-gradient-to-br from-blue-500/50 to-purple-600/50 rounded-xl mb-4 relative overflow-hidden">
           <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300"></div>
         </div>
@@ -36,7 +36,7 @@
     <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 mb-8">
       <h4 class="text-2xl font-bold text-white mb-6">المقالات الأكثر قراءة</h4>
       <div class="space-y-6">
-        <NuxtLink v-for="post in popularPosts" :key="post.id" :to="`/blog/${post.id}`" class="flex space-x-4 space-x-reverse group cursor-pointer">
+        <NuxtLink v-for="post in popularPosts" :key="post.id" :to="`/blog/${post.id}`" class="flex space-x-4 space-x-reverse group cursor-pointer" :title="post.title" :aria-label="post.title">
           <div class="w-20 h-20 bg-gradient-to-br from-blue-500/30 to-purple-600/30 rounded-lg flex-shrink-0 relative overflow-hidden">
             <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300"></div>
           </div>
@@ -59,8 +59,10 @@
         <NuxtLink
           v-for="category in categoriesWithCount"
           :key="category.name"
-          :to="{ path: '/blog', query: { category: category.name } }"
+          :to="{ path: '/blog', query: { category: category.name.toLowerCase() } }"
           class="flex items-center justify-between p-3 rounded-lg hover:bg-white/10 transition-colors cursor-pointer"
+          :title="`عرض مقالات تصنيف ${category.name}`"
+          :aria-label="`عرض مقالات تصنيف ${category.name}`"
         >
           <span class="text-white">{{ category.name }}</span>
           <span class="bg-blue-600/50 text-white px-2 py-1 rounded-full text-sm">{{ category.count }}</span>
@@ -75,8 +77,10 @@
         <NuxtLink
           v-for="tag in tags"
           :key="tag"
-          :to="{ path: '/blog', query: { tag } }"
+          :to="{ path: '/blog', query: { tag: tag.toLowerCase() } }"
           class="bg-white/10 hover:bg-white/20 text-white px-3 py-1 rounded-full text-sm cursor-pointer transition-colors"
+          :title="`عرض مقالات وسم ${tag}`"
+          :aria-label="`عرض مقالات وسم ${tag}`"
         >
           {{ tag }}
         </NuxtLink>
@@ -95,7 +99,7 @@
             <span class="text-white font-semibold">{{ comment.author }}</span>
           </div>
           <p class="text-white/80 text-sm mb-1">{{ comment.text }}</p>
-          <NuxtLink :to="`/blog/${comment.postId}`" class="text-blue-400 text-xs hover:underline">عرض المقال</NuxtLink>
+          <NuxtLink :to="`/blog/${comment.postId}`" class="text-blue-400 text-xs hover:underline" :title="`عرض المقال المرتبط بالتعليق`" :aria-label="`عرض المقال المرتبط بالتعليق`">عرض المقال</NuxtLink>
         </div>
       </div>
     </div>

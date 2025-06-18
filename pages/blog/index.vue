@@ -69,7 +69,7 @@
                         <p class="text-white/60 text-sm">{{ featuredPost.readTime }} دقائق قراءة</p>
                       </div>
                     </div>
-                    <NuxtLink :to="`/blog/${featuredPost.id}`" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
+                    <NuxtLink :to="`/blog/${featuredPost.id}`" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105" :title="featuredPost.title" :aria-label="featuredPost.title">
                       اقرأ المزيد
                     </NuxtLink>
                   </div>
@@ -86,6 +86,8 @@
                     v-if="post && (!('featured' in post) || !post.featured)"
                     :to="`/blog/${post.id}`"
                     class="bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden border border-white/20 group hover:bg-white/15 transition-all duration-300 cursor-pointer block"
+                    :title="post.title"
+                    :aria-label="post.title"
                   >
                     <!-- ...محتوى المقال... -->
                     <div class="h-48 bg-gradient-to-br from-blue-500/30 to-purple-600/30 relative overflow-hidden">
@@ -202,6 +204,8 @@
                   :key="post.id"
                   :to="`/blog/${post.id}`"
                   class="flex space-x-4 space-x-reverse group cursor-pointer"
+                  :title="post.title"
+                  :aria-label="post.title"
                 >
                   <div class="w-20 h-20 bg-gradient-to-br from-blue-500/30 to-purple-600/30 rounded-lg flex-shrink-0 relative overflow-hidden">
                     <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300"></div>
@@ -243,8 +247,10 @@
                 <NuxtLink
                   v-for="tag in tags"
                   :key="tag"
-                  :to="{ path: '/blog', query: { tag } }"
+                  :to="{ path: '/blog', query: { tag: tag.toLowerCase() } }"
                   class="bg-white/10 hover:bg-white/20 text-white px-3 py-1 rounded-full text-sm cursor-pointer transition-colors"
+                  :title="`عرض مقالات وسم ${tag}`"
+                  :aria-label="`عرض مقالات وسم ${tag}`"
                 >
                   {{ tag }}
                 </NuxtLink>
@@ -263,7 +269,7 @@
                     <span class="text-white font-semibold">{{ comment.author }}</span>
                   </div>
                   <p class="text-white/80 text-sm mb-1">{{ comment.text }}</p>
-                  <NuxtLink :to="`#post-${comment.postId}`" class="text-blue-400 text-xs hover:underline">عرض المقال</NuxtLink>
+                  <NuxtLink :to="`#post-${comment.postId}`" class="text-blue-400 text-xs hover:underline" :title="`عرض المقال المرتبط بالتعليق`" :aria-label="`عرض المقال المرتبط بالتعليق`">عرض المقال</NuxtLink>
                 </div>
               </div>
             </div>
