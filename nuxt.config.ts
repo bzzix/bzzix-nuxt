@@ -1,5 +1,4 @@
 export default defineNuxtConfig({
-  compatibilityDate: '2025-06-17',
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxtjs/robots',
@@ -30,13 +29,13 @@ export default defineNuxtConfig({
         { name: 'twitter:title', content: 'Bzzix - الحلول البرمجية وتقنية المعلومات' },
         { name: 'twitter:description', content: 'شركة Bzzix المتخصصة في الحلول البرمجية وتقنية المعلومات، تطوير مواقع، تطبيقات، أمن سيبراني، سحابة، ذكاء اصطناعي.' },
         { name: 'twitter:image', content: '/favicon.ico' },
-        { name: 'theme-color', content: '#1e293b' }
+        { name: 'theme-color', content: '#1e293b' },
       ],
       link: [
         { rel: 'canonical', href: 'https://bzzix.com' },
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         { rel: 'alternate', href: 'https://bzzix.com', hreflang: 'ar' },
-        { rel: 'alternate', href: 'https://bzzix.com/en', hreflang: 'en' }
+        { rel: 'alternate', href: 'https://bzzix.com/en', hreflang: 'en' },
       ],
       script: [
         {
@@ -54,32 +53,6 @@ export default defineNuxtConfig({
             "description": "شركة Bzzix المتخصصة في الحلول البرمجية وتقنية المعلومات"
           }`
         }
-      ],
-      __dangerouslyDisableSanitizersByTagID: {
-        'ldjson-schema': ['innerHTML']
-      }
-    }
-  },
-  robots: {
-    UserAgent: '*',
-    Disallow: '',
-    Allow: '/',
-    Sitemap: 'https://bzzix.com/sitemap.xml',
-  },
-  sitemap: {
-    hostname: 'https://bzzix.com',
-    gzip: true,
-    routes: async () => {
-      // هنا يمكنك جلب الروابط من API
-      // const { data } = await $fetch('https://api.bzzix.com/sitemap')
-      // return data.routes
-      return [
-        '/',
-        '/blog',
-        '/#services',
-        '/#about',
-        '/#projects',
-        '/#contact',
       ]
     }
   }
